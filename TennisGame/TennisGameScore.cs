@@ -6,11 +6,7 @@
 
         public string Score()
         {
-            if (_firstPlayerScore == 1)
-            {
-                return "Fifteen Love";
-            }
-            return "Love All";
+            return _firstPlayerScore == 1 ? "Fifteen Love" : "Love All";
         }
 
         public void FirstPlayerScore()
