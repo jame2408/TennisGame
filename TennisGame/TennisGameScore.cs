@@ -18,8 +18,8 @@ namespace TennisGame
 
         public string Score()
         {
-            return (_firstPlayerScore == 0 && _secondPlayerScore == 0) 
-                ? "Love All" : 
+            return (_firstPlayerScore == _secondPlayerScore) 
+                ? scoreLookup[_firstPlayerScore]+ " All" : 
                 scoreLookup[_firstPlayerScore] + " " + scoreLookup[_secondPlayerScore];
         }
 
