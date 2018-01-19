@@ -6,8 +6,11 @@ namespace TennisGame
     {
         private int _firstPlayerScore;
 
+        private int _secondPlayerScore;
+
         private readonly Dictionary<int, string> scoreLookup = new Dictionary<int, string>()
         {
+            { 0, "Love" },
             { 1, "Fifteen" },
             { 2, "Thirty" },
             { 3, "Forty" }
@@ -15,7 +18,9 @@ namespace TennisGame
 
         public string Score()
         {
-            return _firstPlayerScore >= 1 ? scoreLookup[_firstPlayerScore] + " Love" : "Love All";
+            return (_firstPlayerScore == 0 && _secondPlayerScore == 0) 
+                ? "Love All" : 
+                scoreLookup[_firstPlayerScore] + " " + scoreLookup[_secondPlayerScore];
         }
 
         public void FirstPlayerScore()
@@ -25,7 +30,7 @@ namespace TennisGame
 
         public void SecondPlayerScore()
         {
-            throw new System.NotImplementedException();
+            _secondPlayerScore++;
         }
     }
 }
