@@ -27,7 +27,12 @@ namespace TennisGame
                 {
                     if (_firstPlayerScore > 3 || _secondPlayerScore > 3)
                     {
-                        return _firstPlayerName + " Adv";
+                        if (_firstPlayerScore > _secondPlayerScore)
+                        {
+                            return _firstPlayerName + " Adv";
+                        }
+
+                        return _secondPlayerName + " Adv";
                     }
                 }
                 return NormalScore();
