@@ -18,13 +18,42 @@ namespace TennisGame
 
         public string Score()
         {
-            if (_firstPlayerScore >= 3 && _secondPlayerScore >= 3 && _firstPlayerScore == _secondPlayerScore)
+            if (IsTheSameScore())
             {
-                return "Deuce";
+                if (IsDeuce())
+                {
+                    return Deuce();
+                }
+
+                return SameScore();
             }
-            return (_firstPlayerScore == _secondPlayerScore) 
-                ? scoreLookup[_firstPlayerScore]+ " All" : 
-                scoreLookup[_firstPlayerScore] + " " + scoreLookup[_secondPlayerScore];
+
+            return NormalScore();
+        }
+
+        private string NormalScore()
+        {
+            return scoreLookup[_firstPlayerScore] + " " + scoreLookup[_secondPlayerScore];
+        }
+
+        private string SameScore()
+        {
+            return scoreLookup[_firstPlayerScore] + " All";
+        }
+
+        private static string Deuce()
+        {
+            return "Deuce";
+        }
+
+        private bool IsDeuce()
+        {
+            return _firstPlayerScore >= 3 && _secondPlayerScore >= 3;
+        }
+
+        private bool IsTheSameScore()
+        {
+            return _firstPlayerScore == _secondPlayerScore;
         }
 
         public void FirstPlayerScore()
