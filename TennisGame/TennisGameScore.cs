@@ -18,7 +18,7 @@ namespace TennisGame
 
         public string Score()
         {
-            if (_firstPlayerScore == 3 && _secondPlayerScore == 3)
+            if (_firstPlayerScore >= 3 && _secondPlayerScore >= 3 && _firstPlayerScore == _secondPlayerScore)
             {
                 return "Deuce";
             }
