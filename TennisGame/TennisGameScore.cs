@@ -18,6 +18,10 @@ namespace TennisGame
 
         public string Score()
         {
+            if (_firstPlayerScore == 3 && _secondPlayerScore == 3)
+            {
+                return "Deuce";
+            }
             return (_firstPlayerScore == _secondPlayerScore) 
                 ? scoreLookup[_firstPlayerScore]+ " All" : 
                 scoreLookup[_firstPlayerScore] + " " + scoreLookup[_secondPlayerScore];
@@ -25,8 +29,7 @@ namespace TennisGame
 
         public void FirstPlayerScore()
         {
-            _firstPlayerScore++;
-        }
+            _firstPlayerScore++;}
 
         public void SecondPlayerScore()
         {
