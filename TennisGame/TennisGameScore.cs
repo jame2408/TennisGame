@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TennisGame
 {
     public class TennisGameScore
     {
-        private readonly string _firstPlayer;
-        private readonly string _secondPlayer;
+        private readonly string _firstPlayerName;
+        private readonly string _secondPlayerName;
         private int _firstPlayerScore;
 
         private int _secondPlayerScore;
@@ -18,25 +19,32 @@ namespace TennisGame
             { 3, "Forty" }
         };
 
-        public TennisGameScore(string firstPlayer, string secondPlayer)
-        {
-            _firstPlayer = firstPlayer;
-            _secondPlayer = secondPlayer;
-        }
-
         public string Score()
         {
-            if (IsTheSameScore())
+            if (IsScoreDifferent())
             {
-                if (IsDeuce())
+                if (Math.Abs(_firstPlayerScore - _secondPlayerScore) == 1)
                 {
-                    return Deuce();
+                    if (_firstPlayerScore > 3 || _secondPlayerScore > 3)
+                    {
+                        return _firstPlayerName + " Adv";
+                    }
                 }
-
-                return SameScore();
+                return NormalScore();
             }
 
-            return NormalScore();
+            if (IsDeuce())
+            {
+                return Deuce();
+            }
+
+            return SameScore();
+        }
+
+        public TennisGameScore(string firstPlayerName, string secondPlayerName)
+        {
+            _firstPlayerName = firstPlayerName;
+            _secondPlayerName = secondPlayerName;
         }
 
         private string NormalScore()
@@ -59,14 +67,15 @@ namespace TennisGame
             return _firstPlayerScore >= 3 && _secondPlayerScore >= 3;
         }
 
-        private bool IsTheSameScore()
+        private bool IsScoreDifferent()
         {
-            return _firstPlayerScore == _secondPlayerScore;
+            return _firstPlayerScore != _secondPlayerScore;
         }
 
         public void FirstPlayerScore()
         {
-            _firstPlayerScore++;}
+            _firstPlayerScore++;
+        }
 
         public void SecondPlayerScore()
         {
