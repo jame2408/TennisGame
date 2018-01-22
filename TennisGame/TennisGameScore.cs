@@ -4,6 +4,8 @@ namespace TennisGame
 {
     public class TennisGameScore
     {
+        private readonly string _firstPlayer;
+        private readonly string _secondPlayer;
         private int _firstPlayerScore;
 
         private int _secondPlayerScore;
@@ -15,6 +17,12 @@ namespace TennisGame
             { 2, "Thirty" },
             { 3, "Forty" }
         };
+
+        public TennisGameScore(string firstPlayer, string secondPlayer)
+        {
+            _firstPlayer = firstPlayer;
+            _secondPlayer = secondPlayer;
+        }
 
         public string Score()
         {
