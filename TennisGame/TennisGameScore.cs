@@ -37,7 +37,11 @@ namespace TennisGame
 
                     if (Math.Abs(_firstPlayerScore - _secondPlayerScore) >= 2)
                     {
-                        return _firstPlayerName + " Win";
+                        if (_firstPlayerScore > _secondPlayerScore)
+                        {
+                            return _firstPlayerName + " Win";
+                        }
+                        return _secondPlayerName + " Win";
                     }
                 }
                 return NormalScore();
