@@ -23,9 +23,9 @@ namespace TennisGame
         {
             if (IsScoreDifferent())
             {
-                if (Math.Abs(_firstPlayerScore - _secondPlayerScore) == 1)
+                if (_firstPlayerScore > 3 || _secondPlayerScore > 3)
                 {
-                    if (_firstPlayerScore > 3 || _secondPlayerScore > 3)
+                    if (Math.Abs(_firstPlayerScore - _secondPlayerScore) == 1)
                     {
                         if (_firstPlayerScore > _secondPlayerScore)
                         {
@@ -33,6 +33,11 @@ namespace TennisGame
                         }
 
                         return _secondPlayerName + " Adv";
+                    }
+
+                    if (Math.Abs(_firstPlayerScore - _secondPlayerScore) >= 2)
+                    {
+                        return _firstPlayerName + " Win";
                     }
                 }
                 return NormalScore();
