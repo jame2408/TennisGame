@@ -21,38 +21,29 @@ namespace TennisGame
 
         public string Score()
         {
-            if (IsScoreDifferent())
-            {
-                if (_firstPlayerScore > 3 || _secondPlayerScore > 3)
-                {
-                    if (Math.Abs(_firstPlayerScore - _secondPlayerScore) == 1)
-                    {
-                        if (_firstPlayerScore > _secondPlayerScore)
-                        {
-                            return _firstPlayerName + " Adv";
-                        }
+            return IsScoreDifferent()
+                ? (IsReadyForWin() ? AdvStateScore() : NormalScore())
+                : (IsDeuce() ? Deuce() : SameScore());
+        }
 
-                        return _secondPlayerName + " Adv";
-                    }
+        private string AdvStateScore()
+        {
+            return ReadyForWinName() + (IsAdv() ? " Adv" : " Win");
+        }
 
-                    if (Math.Abs(_firstPlayerScore - _secondPlayerScore) >= 2)
-                    {
-                        if (_firstPlayerScore > _secondPlayerScore)
-                        {
-                            return _firstPlayerName + " Win";
-                        }
-                        return _secondPlayerName + " Win";
-                    }
-                }
-                return NormalScore();
-            }
+        private string ReadyForWinName()
+        {
+            return _firstPlayerScore > _secondPlayerScore ? _firstPlayerName : _secondPlayerName;
+        }
 
-            if (IsDeuce())
-            {
-                return Deuce();
-            }
+        private bool IsAdv()
+        {
+            return Math.Abs(_firstPlayerScore - _secondPlayerScore) == 1;
+        }
 
-            return SameScore();
+        private bool IsReadyForWin()
+        {
+            return _firstPlayerScore > 3 || _secondPlayerScore > 3;
         }
 
         public TennisGameScore(string firstPlayerName, string secondPlayerName)
